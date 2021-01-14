@@ -1,0 +1,983 @@
+<!DOCTYPE html>
+<!-- 改成简体中文 防止浏览器自动翻译 -->
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/indexCSS.css">
+    <link rel="stylesheet" href="css/homePopup.css">
+    <title>CodeArtist</title>
+    <style>
+        /* 字体声明 */
+        @font-face {
+            font-family: 'icomoon';
+            src: url('fonts/icomoon.eot?fh4nvy');
+            src: url('fonts/icomoon.eot?fh4nvy#iefix') format('embedded-opentype'),
+                url('fonts/icomoon.ttf?fh4nvy') format('truetype'),
+                url('fonts/icomoon.woff?fh4nvy') format('woff'),
+                url('fonts/icomoon.svg?fh4nvy#icomoon') format('svg');
+            font-weight: normal;
+            font-style: normal;
+            font-display: block;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- headerStar -->
+    <div class="header w">
+        <div class="headerLeft">
+            <h1>Code artist</h1>
+            <p>计算机程序如同钢琴一样的优美,在计算机编程的领域当中阁下同样可以成为一名艺术家.</p>
+        </div>
+        <div class="headerRight">
+            <div id="time">
+                <svg version="1.1" id="timeLogo" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                    viewBox="0 0 100 100" enable-background="new 0 0 100 100" xml:space="preserve">
+                    <circle fill="none" stroke="#333333" stroke-width="4" stroke-miterlimit="10" cx="50" cy="50" r="48" />
+                    <line fill="none" stroke-linecap="round" stroke="#333333" stroke-width="4" stroke-miterlimit="10" x1="50" y1="50"
+                        x2="85" y2="50.5">
+                        <animateTransform attributeName="transform" dur="2s" type="rotate" from="0 50 50" to="360 50 50"
+                            repeatCount="indefinite" />
+                    </line>
+                    <line fill="none" stroke-linecap="round" stroke="#333333" stroke-width="4" stroke-miterlimit="10" x1="50" y1="50"
+                        x2="49.5" y2="74">
+                        <animateTransform attributeName="transform" dur="15s" type="rotate" from="0 50 50" to="360 50 50"
+                            repeatCount="indefinite" />
+                    </line>
+                </svg>
+                <div id="timeContent">
+                    <p id="timeText"></p>
+                    <div class="timeTextHint">
+                        <div></div>
+                        键盘上都是掉发,还不睡!
+                    </div>
+                </div>
+            </div>
+            <span id="boom">
+                <div class="boomHint">
+                    <div></div>
+                    艺术就是爆炸!
+                </div>
+            </span>
+            <span id="light" onclick="LightSwitch()">
+                <div class="lightHint">
+                    <div></div>
+                    您要关灯？
+                </div>
+            </span>
+            
+            
+        </div>
+    </div>
+    <!-- headerEnd -->
+
+    <!-- navStar -->
+    <div class="nav w">
+        <!-- 三个标题 Illustrator About Friendly -->
+        <ul>
+            <li><a href="#">Illustration</a></li>
+            <li><a href="#">Friendly</a></li>
+            <li><a href="#">About</a></li>
+        </ul>
+        <p>
+            History - Rich Brain (Piano)<br/>
+            单击琴谱播放 | 双击琴谱暂停
+        </p>
+    </div>
+    <!-- navEnd -->
+
+    <!-- scoreStar -->
+    <div class="score w">
+        <img id="scoreImg" src="images/historyPiano01.png" alt="" draggable="false">
+    </div>
+    <audio id="scoreMusic" loop  src="video/history.mp3"></audio>
+    <!-- scoreEnd -->
+
+    <!-- contentStar -->
+    <div class="content w">
+        <div class="contentTitle">
+            <h2 data-shadow='Illustration'>Illustration</h2>
+            <p>Illustrator : Son of Alan</p>
+        </div>
+        <div class="contentBody">
+            <!-- 图片弹窗 -->
+            <!-- popup 负责显示隐藏窗口 -->
+            <div id="popup">
+                <!-- 负责弹窗的样式，例如居中等 -->
+                <div id="popupStyle">
+                    <!-- 弹窗的图片 -->
+                    <img id="popupImg" draggable="false"></img>
+                    <!-- 弹窗的文字 -->
+                    <p id="popupText"></p>
+                </div>
+            </div>
+            <ul id="contentBodyUl">
+                <li onclick="showPopupImg(this)">
+                    <img src="images/content00.gif" alt="">
+                    <div class="imgMask">
+                        <p>
+                            Instructions</br>
+                            by Son of Alan</br>
+                            IKEA
+                        </p>
+                    </div>
+                </li>
+                <li onclick="showPopupImg(this)">
+                    <img src="images/content01.jpg" alt="">
+                    <div class="imgMask">
+                        <p>
+                            Travel to IKEA Greenwich</br>
+                            by Son of Alan</br>
+                            IKEA
+                        </p>
+                    </div>
+                </li>
+                <li onclick="showPopupImg(this)">
+                    <img src="images/content02.jpg" alt="">
+                    <div class="imgMask">
+                        <p>
+                            Airfix Office Worker</br>
+                            by Son of Alan</br>
+                        </p>
+                    </div>
+                </li>
+                <li onclick="showPopupImg(this)">
+                    <img src="images/content03.jpg" alt="">
+                    <div class="imgMask">
+                        <p>
+                            Mumbai</br>
+                            by Son of Alan</br>
+                            Soho House
+                        </p>
+                    </div>
+                </li>
+                <li onclick="showPopupImg(this)">
+                    <img src="images/content04.jpg" alt="">
+                    <div class="imgMask">
+                        <p>
+                            Survival</br>
+                            by Son of Alan</br>
+                        </p>
+                    </div>
+                </li>
+                <li onclick="showPopupImg(this)">
+                    <img src="images/content05.jpg" alt="">
+                    <div class="imgMask">
+                        <p>
+                            Washing</br>
+                            by Son of Alan</br>
+                        </p>
+                    </div>
+                </li>
+                <li onclick="showPopupImg(this)">
+                    <img src="images/content06.jpg" alt="">
+                    <div class="imgMask">
+                        <p>
+                            Guide to Winter</br>
+                            by Son of Alan</br>
+                            Dave
+                        </p>
+                    </div>
+                </li>
+                <li onclick="showPopupImg(this)">
+                    <img src="images/content07.jpg" alt="">
+                    <div class="imgMask">
+                        <p>
+                            Rugby Club Handbook</br>
+                            by Son of Alan</br>
+                            Heineken
+                        </p>
+                    </div>
+                </li>
+                <li onclick="showPopupImg(this)">
+                    <img src="images/content08.jpg" alt="">
+                    <div class="imgMask">
+                        <p>
+                            Aeroplane Instructions</br>
+                            by Son of Alan</br>
+                        </p>
+                    </div>
+                </li>
+                <li onclick="showPopupImg(this)">
+                    <img src="images/content09.jpg" alt="">
+                    <div class="imgMask">
+                        <p>
+                            Aeroplane Stairs</br>
+                            by Son of Alan</br>
+                        </p>
+                    </div>
+                </li>
+                <li onclick="showPopupImg(this)">
+                    <img src="images/content10.jpg" alt="">
+                    <div class="imgMask">
+                        <p>
+                            Sustainable London</br>
+                            by Son of Alan</br>
+                            Time Out London
+                        </p>
+                    </div>
+                </li>
+                <li onclick="showPopupImg(this)">
+                    <img src="images/content11.jpg" alt="">
+                    <div class="imgMask">
+                        <p>
+                            Yoga for Lazy People</br>
+                            by Son of Alan</br>
+                            Guardian Weekend
+                        </p>
+                    </div>
+                </li>
+                <li onclick="showPopupImg(this)">
+                    <img src="images/content12.jpg" alt="">
+                    <div class="imgMask">
+                        <p>
+                            Converse Using Voice – How to Stop Looking at Your Phone</br>
+                            by Son of Alan</br>
+                        </p>
+                    </div>
+                </li>
+                <li onclick="showPopupImg(this)">
+                    <img src="images/content13.jpg" alt="">
+                    <div class="imgMask">
+                        <p>
+                            Cycle</br>
+                            by Son of Alan</br>
+                        </p>
+                    </div>
+                </li>
+                <li onclick="showPopupImg(this)">
+                    <img src="images/content14.jpg" alt="">
+                    <div class="imgMask">
+                        <p>
+                            Party Excuses</br>
+                            by Son of Alan</br>
+                        </p>
+                    </div>
+                </li>
+                <li onclick="showPopupImg(this)">
+                    <img src="images/content15.jpg" alt="">
+                    <div class="imgMask">
+                        <p>
+                            Guide To Winter</br>
+                            by Son of Alan</br>
+                            Dave
+                        </p>
+                    </div>
+                </li>
+                <li onclick="showPopupImg(this)">
+                    <img src="images/content16.jpg" alt="">
+                    <div class="imgMask">
+                        <p>
+                            Fitness</br>
+                            by Son of Alan</br>
+                            Men's Health
+                        </p>
+                    </div>
+                </li>
+                <li onclick="showPopupImg(this)">
+                    <img src="images/content17.jpg" alt="">
+                    <div class="imgMask">
+                        <p>
+                            Black Belt</br>
+                            by Son of Alan</br>
+                            The Guardian
+                        </p>
+                    </div>
+                </li>
+                <li onclick="showPopupImg(this)">
+                    <img src="images/content18.jpg" alt="">
+                    <div class="imgMask">
+                        <p>
+                            Portable Shopping</br>
+                            by Son of Alan</br>
+                        </p>
+                    </div>
+                </li>
+                <li onclick="showPopupImg(this)">
+                    <img src="images/content19.jpg" alt="">
+                    <div class="imgMask">
+                        <p>
+                            Hacker</br>
+                            by Son of Alan</br>
+                            Forbes Japan
+                        </p>
+                    </div>
+                </li>
+                <li onclick="showPopupImg(this)">
+                    <img src="images/content20.jpg" alt="">
+                    <div class="imgMask">
+                        <p>
+                            How to Drink Beer</br>
+                            by Son of Alan</br>
+                        </p>
+                    </div>
+                </li>
+                <li onclick="showPopupImg(this)">
+                    <img src="images/content21.jpg" alt="">
+                    <div class="imgMask">
+                        <p>
+                            How to Greet Colleagues</br>
+                            by Son of Alan</br>
+                            Guardian
+                        </p>
+                    </div>
+                </li>
+                <li onclick="showPopupImg(this)">
+                    <img src="images/content22.jpg" alt="">
+                    <div class="imgMask">
+                        <p>
+                            Injury</br>
+                            by Son of Alan</br>
+                        </p>
+                    </div>
+                </li>
+                <li onclick="showPopupImg(this)">
+                    <img src="images/content23.jpg" alt="">
+                    <div class="imgMask">
+                        <p>
+                            Luggage Carousel</br>
+                            by Son of Alan</br>
+                        </p>
+                    </div>
+                </li>
+                <li onclick="showPopupImg(this)">
+                    <img src="images/content24.jpg" alt="">
+                    <div class="imgMask">
+                        <p>
+                            Salt, Ice, Spin</br>
+                            by Son of Alan</br>
+                        </p>
+                    </div>
+                </li>
+                <li onclick="showPopupImg(this)">
+                    <img src="images/content25.jpg" alt="">
+                    <div class="imgMask">
+                        <p>
+                            Selfie Opportunity – How to Stop Looking at Your Phone</br>
+                            by Son of Alan</br>
+                        </p>
+                    </div>
+                </li>
+                <li onclick="showPopupImg(this)">
+                    <img src="images/content26.jpg" alt="">
+                    <div class="imgMask">
+                        <p>
+                            Social Media Check – How to Stop Looking at Your Phone</br>
+                            by Son of Alan</br>
+                        </p>
+                    </div>
+                </li>
+                <li onclick="showPopupImg(this)">
+                    <img src="images/content27.jpg" alt="">
+                    <div class="imgMask">
+                        <p>
+                            Pandemic</br>
+                            by Son of Alan</br>
+                            Politico Magazine
+                        </p>
+                    </div>
+                </li>
+                <li onclick="showPopupImg(this)">
+                    <img src="images/content28.jpg" alt="">
+                    <div class="imgMask">
+                        <p>
+                            Pandemic Financing</br>
+                            by Son of Alan</br>
+                            Washington Chronicle of Higher Education 
+                        </p>
+                    </div>
+                </li>
+                <li onclick="showPopupImg(this)">
+                    <img src="images/content29.jpg" alt="">
+                    <div class="imgMask">
+                        <p>
+                            Social Distancing</br>
+                            by Son of Alan</br>
+                            Washington Chronicle of Higher Education 
+                        </p>
+                    </div>
+                </li>
+                <li onclick="showPopupImg(this)">
+                    <img src="images/content30.jpg" alt="">
+                    <div class="imgMask">
+                        <p>
+                            Stroking Technique</br>
+                            by Son of Alan</br>
+                        </p>
+                    </div>
+                </li>
+                <li onclick="showPopupImg(this)">
+                    <img src="images/content31.jpg" alt="">
+                    <div class="imgMask">
+                        <p>
+                            Experts</br>
+                            by Son of Alan</br>
+                        </p>
+                    </div>
+                </li>
+                <li onclick="showPopupImg(this)">
+                    <img src="images/content32.jpg" alt="">
+                    <div class="imgMask">
+                        <p>
+                            Lockdown Exercises</br>
+                            by Son of Alan</br>
+                        </p>
+                    </div>
+                </li>
+                <li onclick="showPopupImg(this)">
+                    <img src="images/content33.jpg" alt="">
+                    <div class="imgMask">
+                        <p>
+                            Twist</br>
+                            by Son of Alan</br>
+                        </p>
+                    </div>
+                </li>
+                <li onclick="showPopupImg(this)">
+                    <img src="images/content34.jpg" alt="">
+                    <div class="imgMask">
+                        <p>
+                            Zombies</br>
+                            by Son of Alan</br>
+                        </p>
+                    </div>
+                </li>
+                <li onclick="showPopupImg(this)">
+                    <img src="images/content35.jpg" alt="">
+                    <div class="imgMask">
+                        <p>
+                            Binx</br>
+                            by Son of Alan</br>
+                            Ari Merkin
+                        </p>
+                    </div>
+                </li>
+                <li onclick="showPopupImg(this)">
+                    <img src="images/content36.jpg" alt="">
+                    <div class="imgMask">
+                        <p>
+                            Watch</br>
+                            by Son of Alan</br>
+                        </p>
+                    </div>
+                </li>
+                <li onclick="showPopupImg(this)">
+                    <img src="images/content37.jpg" alt="">
+                    <div class="imgMask">
+                        <p>
+                            Myths</br>
+                            by Son of Alan</br>
+                            Shortlist Magazine
+                        </p>
+                    </div>
+                </li>
+                <li onclick="showPopupImg(this)">
+                    <img src="images/content38.jpg" alt="">
+                    <div class="imgMask">
+                        <p>
+                            Etiquette</br>
+                            by Son of Alan</br>
+                            Guardian
+                        </p>
+                    </div>
+                </li>
+                <li onclick="showPopupImg(this)">
+                    <img src="images/content39.jpg" alt="">
+                    <div class="imgMask">
+                        <p>
+                            Etiquette Kiss</br>
+                            by Son of Alan</br>
+                            Guardian
+                        </p>
+                    </div>
+                </li>
+                <li onclick="showPopupImg(this)">
+                    <img src="images/content40.jpg" alt="">
+                    <div class="imgMask">
+                        <p>
+                            Crashcard</br>
+                            by Son of Alan</br>
+                        </p>
+                    </div>
+                </li>
+                <li onclick="showPopupImg(this)">
+                    <img src="images/content41.jpg" alt="">
+                    <div class="imgMask">
+                        <p>
+                            Swallow</br>
+                            by Son of Alan</br>
+                            The Guardian
+                        </p>
+                    </div>
+                </li>
+                <li onclick="showPopupImg(this)">
+                    <img src="images/content42.jpg" alt="">
+                    <div class="imgMask">
+                        <p>
+                            Aviation Trade Shows</br>
+                            by Son of Alan</br>
+                        </p>
+                    </div>
+                </li>
+                <li onclick="showPopupImg(this)">
+                    <img src="images/content43.jpg" alt="">
+                    <div class="imgMask">
+                        <p>
+                            Engine</br>
+                            by Son of Alan</br>
+                            BMW
+                        </p>
+                    </div>
+                </li>
+                <li onclick="showPopupImg(this)">
+                    <img src="images/content44.jpg" alt="">
+                    <div class="imgMask">
+                        <p>
+                            Climbing</br>
+                            by Son of Alan</br>
+                        </p>
+                    </div>
+                </li>
+                <li onclick="showPopupImg(this)">
+                    <img src="images/content45.jpg" alt="">
+                    <div class="imgMask">
+                        <p>
+                            Cast</br>
+                            by Son of Alan</br>
+                            UPP
+                        </p>
+                    </div>
+                </li>
+                <li onclick="showPopupImg(this)">
+                    <img src="images/content46.jpg" alt="">
+                    <div class="imgMask">
+                        <p>
+                            Flight</br>
+                            by Son of Alan</br>
+                        </p>
+                    </div>
+                </li>
+                <li onclick="showPopupImg(this)">
+                    <img src="images/content47.jpg" alt="">
+                    <div class="imgMask">
+                        <p>
+                            Mystery Box</br>
+                            by Son of Alan</br>
+                            Verus Precision
+                        </p>
+                    </div>
+                </li>
+                <li onclick="showPopupImg(this)">
+                    <img src="images/content48.jpg" alt="">
+                    <div class="imgMask">
+                        <p>
+                            Stairs</br>
+                            by Son of Alan</br>
+                            UPP
+                        </p>
+                    </div>
+                </li>
+                <li onclick="showPopupImg(this)">
+                    <img src="images/content49.jpg" alt="">
+                    <div class="imgMask">
+                        <p>
+                            Superdad</br>
+                            by Son of Alan</br>
+                        </p>
+                    </div>
+                </li>
+                <li onclick="showPopupImg(this)">
+                    <img src="images/content50.jpg" alt="">
+                    <div class="imgMask">
+                        <p>
+                            Technology</br>
+                            by Son of Alan</br>
+                        </p>
+                    </div>
+                </li>
+                <li onclick="showPopupImg(this)">
+                    <img src="images/content51.jpg" alt="">
+                    <div class="imgMask">
+                        <p>
+                            Choosing a Degree 2</br>
+                            by Son of Alan</br>
+                            The Guardian
+                        </p>
+                    </div>
+                </li>
+                <li onclick="showPopupImg(this)">
+                    <img src="images/content52.jpg" alt="">
+                    <div class="imgMask">
+                        <p>
+                            Choices</br>
+                            by Son of Alan</br>
+                            Verus Precision
+                        </p>
+                    </div>
+                </li>
+                <li onclick="showPopupImg(this)">
+                    <img src="images/content53.jpg" alt="">
+                    <div class="imgMask">
+                        <p>
+                            Christmas Party</br>
+                            by Son of Alan</br>
+                        </p>
+                    </div>
+                </li>
+                <li onclick="showPopupImg(this)">
+                    <img src="images/content54.jpg" alt="">
+                    <div class="imgMask">
+                        <p>
+                            Computer</br>
+                            by Son of Alan</br>
+                        </p>
+                    </div>
+                </li>
+                <li onclick="showPopupImg(this)">
+                    <img src="images/content55.jpg" alt="">
+                    <div class="imgMask">
+                        <p>
+                            Exit Routes</br>
+                            by Son of Alan</br>
+                        </p>
+                    </div>
+                </li>
+                <li onclick="showPopupImg(this)">
+                    <img src="images/content56.jpg" alt="">
+                    <div class="imgMask">
+                        <p>
+                            Jude Law</br>
+                            by Son of Alan</br>
+                            GQ France
+                        </p>
+                    </div>
+                </li>
+                <li onclick="showPopupImg(this)">
+                    <img src="images/content57.jpg" alt="">
+                    <div class="imgMask">
+                        <p>
+                            Kev</br>
+                            by Son of Alan</br>
+                            GQ France
+                        </p>
+                    </div>
+                </li>
+                <li onclick="showPopupImg(this)">
+                    <img src="images/content58.jpg" alt="">
+                    <div class="imgMask">
+                        <p>
+                            Pujadas</br>
+                            by Son of Alan</br>
+                            GQ France
+                        </p>
+                    </div>
+                </li>
+                <li onclick="showPopupImg(this)">
+                    <img src="images/content59.jpg" alt="">
+                    <div class="imgMask">
+                        <p>
+                            Twist</br>
+                            by Son of Alan</br>
+                            Slimming World Magazine
+                        </p>
+                    </div>
+                </li>
+                <li onclick="showPopupImg(this)">
+                    <img src="images/content60.jpg" alt="">
+                    <div class="imgMask">
+                        <p>
+                            Hip Flexor</br>
+                            by Son of Alan</br>
+                            Slimming World Magazine
+                        </p>
+                    </div>
+                </li>
+                <li onclick="showPopupImg(this)">
+                    <img src="images/content61.jpg" alt="">
+                    <div class="imgMask">
+                        <p>
+                            Spaghetti</br>
+                            by Son of Alan</br>
+                            The Guardian
+                        </p>
+                    </div>
+                </li>
+                <li onclick="showPopupImg(this)">
+                    <img src="images/content62.jpg" alt="">
+                    <div class="imgMask">
+                        <p>
+                            Growing your investments</br>
+                            by Son of Alan</br>
+                            Asian Investor Magazine
+                        </p>
+                    </div>
+                </li>
+                <li onclick="showPopupImg(this)">
+                    <img src="images/content63.jpg" alt="">
+                    <div class="imgMask">
+                        <p>
+                            Flying While Muslim</br>
+                            by Son of Alan</br>
+                            The Guardian
+                        </p>
+                    </div>
+                </li>
+                <li onclick="showPopupImg(this)">
+                    <img src="images/content64.jpg" alt="">
+                    <div class="imgMask">
+                        <p>
+                            Brute Force</br>
+                            by Son of Alan</br>
+                            Verus Precision
+                        </p>
+                    </div>
+                </li>
+                <li onclick="showPopupImg(this)">
+                    <img src="images/content65.jpg" alt="">
+                    <div class="imgMask">
+                        <p>
+                            Lovely Horse</br>
+                            by Son of Alan</br>
+                            The Guardian
+                        </p>
+                    </div>
+                </li>
+                <li onclick="showPopupImg(this)">
+                    <img src="images/content66.jpg" alt="">
+                    <div class="imgMask">
+                        <p>
+                            Ikea Kanye</br>
+                            by Son of Alan</br>
+                        </p>
+                    </div>
+                </li>
+                <li onclick="showPopupImg(this)">
+                    <img src="images/content67.jpg" alt="">
+                    <div class="imgMask">
+                        <p>
+                            Venn Diagram</br>
+                            by Son of Alan</br>
+                            Verus Precision
+                        </p>
+                    </div>
+                </li>
+                <li onclick="showPopupImg(this)">
+                    <img src="images/content68.jpg" alt="">
+                    <div class="imgMask">
+                        <p>
+                            Karate Chop</br>
+                            by Son of Alan</br>
+                        </p>
+                    </div>
+                </li>
+                <li onclick="showPopupImg(this)">
+                    <img src="images/content69.jpg" alt="">
+                    <div class="imgMask">
+                        <p>
+                            Printer</br>
+                            by Son of Alan</br>
+                        </p>
+                    </div>
+                </li>
+                <li onclick="showPopupImg(this)">
+                    <img src="images/content70.jpg" alt="">
+                    <div class="imgMask">
+                        <p>
+                            Choices</br>
+                            by Son of Alan</br>
+                            Verus Precision
+                        </p>
+                    </div>
+                </li>
+                <li onclick="showPopupImg(this)">
+                    <img src="images/content71.jpg" alt="">
+                    <div class="imgMask">
+                        <p>
+                            Rocket Science</br>
+                            by Son of Alan</br>
+                            Verus Precision
+                        </p>
+                    </div>
+                </li>
+                <li onclick="showPopupImg(this)">
+                    <img src="images/content72.jpg" alt="">
+                    <div class="imgMask">
+                        <p>
+                            Sandcastle</br>
+                            by Son of Alan</br>
+                        </p>
+                    </div>
+                </li>
+                <li onclick="showPopupImg(this)">
+                    <img src="images/content73.jpg" alt="">
+                    <div class="imgMask">
+                        <p>
+                            Setting a Trap</br>
+                            by Son of Alan</br>
+                        </p>
+                    </div>
+                </li>
+                <li onclick="showPopupImg(this)">
+                    <img src="images/content74.jpg" alt="">
+                    <div class="imgMask">
+                        <p>
+                            Mars Drone</br>
+                            by Son of Alan</br>
+                        </p>
+                    </div>
+                </li>
+                <li onclick="showPopupImg(this)">
+                    <img src="images/content75.jpg" alt="">
+                    <div class="imgMask">
+                        <p>
+                            Moon</br>
+                            by Son of Alan</br>
+                        </p>
+                    </div>
+                </li>
+                <li onclick="showPopupImg(this)">
+                    <img src="images/content76.jpg" alt="">
+                    <div class="imgMask">
+                        <p>
+                            Jetpack Station</br>
+                            by Son of Alan</br>
+                            UPP
+                        </p>
+                    </div>
+                </li>
+                <li onclick="showPopupImg(this)">
+                    <img src="images/content77.jpg" alt="">
+                    <div class="imgMask">
+                        <p>
+                            Land Sea Air</br>
+                            by Son of Alan</br>
+                        </p>
+                    </div>
+                </li>
+                <li onclick="showPopupImg(this)">
+                    <img src="images/content78.jpg" alt="">
+                    <div class="imgMask">
+                        <p>
+                            Catapult</br>
+                            by Son of Alan</br>
+                            IKEA
+                        </p>
+                    </div>
+                </li>
+                <li onclick="showPopupImg(this)">
+                    <img src="images/content79.jpg" alt="">
+                    <div class="imgMask">
+                        <p>
+                            Chariot</br>
+                            by Son of Alan</br>
+                            IKEA
+                        </p>
+                    </div>
+                </li>
+                <li onclick="showPopupImg(this)">
+                    <img src="images/content80.jpg" alt="">
+                    <div class="imgMask">
+                        <p>
+                            Ship</br>
+                            by Son of Alan</br>
+                            IKEA
+                        </p>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+    </div>
+    <!-- contentEnd -->
+
+    <!-- footerStart -->
+    <div class="footer">
+        <div class="footerContent">
+            <img class="footerLogo" src="images/LogoLight.png" alt="" draggable="false">
+            <p>
+                此网页由 DrunkCat 开发<br/><br/>
+                本网站所有内容受国际版权法保护:图片版权归所命名艺术家所有，logo版权归DrunkCat所有。</br></br>
+                BGM : History-Rich Brain (Piano)</br>
+                
+            </p>
+
+            <p>
+                I have a dream to be a Code Artist<br><br>
+                计算机程序如同钢琴一样的优美,在计算机编程的领域当中阁下同样可以成为一名艺术家.<br>
+                <span>
+                    Myblog : <a href="https://te4t.com/">TE4T</a><br>
+                    Lazy.
+                </span>
+            </p>
+            
+        </div>
+    </div>
+    <!-- footerEnd -->
+
+    <!-- toTopStar -->
+    <div id="toTop" onclick="backToTop()"></div>
+    <!-- toTopEnd -->
+    
+    <!-- addContentStar -->
+    <div id="addContent"onclick="addPopupSwitch()"></div>
+    <div id="addContentPopup" >
+        <table cellpadding="0" cellspacing="0">
+            <tr>
+                <td><p>添加插畫</p></td>
+            </tr>
+            <tr>
+                <td>圖片 : <input id="addImg" type="file"></td>
+            </tr>
+            <tr>
+                <td>簡介 : <textarea id="addIntro" ></textarea></td>
+                
+            </tr>
+            <tr>
+                <td>作者 : <input id="addAuthor" type="text"></td>
+            </tr>
+            <tr>
+                <td><button id="addBtn" onclick="appendContent()">APPEND</button></td>
+            </tr>
+        </table>
+    </div>
+    <!-- addContentEnd -->
+
+    <!-- homePopupStar -->
+    <div id="homePopup">
+        <div class="container circle">
+			<div class="box1 circle center"></div>
+			<div class="box2 circle center"></div>
+			<div class="box3 circle center"></div>
+			<div class="box4 circle center"></div>
+			<div class="box5 circle center"></div>
+			<div class="box6 circle">
+				<div class="coil" style="--i: 0"></div>
+				<div class="coil" style="--i: 1"></div>
+				<div class="coil" style="--i: 2"></div>
+				<div class="coil" style="--i: 3"></div>
+				<div class="coil" style="--i: 4"></div>
+				<div class="coil" style="--i: 5"></div>
+				<div class="coil" style="--i: 6"></div>
+				<div class="coil" style="--i: 7"></div>
+			</div>
+        </div>
+        <div class="PopupButton" onclick="closeBox()">
+            <div class="glitch"></div>
+            <div class="text" data-text="觀覽藝術">觀覽藝術</div>
+            <span class="platform">MK2</span>
+        </div>
+    </div>
+    <!-- homePopupEnd -->
+
+
+    <!-- 此网页的主要js -->
+    <script src="js/indexJs.js"></script>
+    <!-- 猫 版娘 js -->
+    <script src="https://eqcn.ajz.miesnfu.com/wp-content/plugins/wp-3d-pony/live2dw/lib/L2Dwidget.min.js"></script>
+    <script src="js/catLive2d.js"></script>
+</body>
+
+</html>
